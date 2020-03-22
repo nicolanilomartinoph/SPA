@@ -18,12 +18,7 @@ const app = new Vue({
     router,
     template:
         `<div class="container">
-        <passport-clients />
-        <passport-authorized-clients />
-        <passport-personal-access-tokens />
-            <router-view>
-                
-            </router-view>
+            <router-view></router-view>
         </div>`
 });
 
