@@ -43,6 +43,7 @@
                       <li
                         v-if="$v.form.username.$invalid && $v.form.username.$pending"
                       >Checking availability...</li>
+                      <li v-if="!$v.form.username.isUnique">This username is already taken.</li>
                     </ul>
                   </div>
                 </div>
@@ -96,6 +97,10 @@
                     id="email"
                     type="email"
                     class="form-control"
+                    :class="{
+                      'is-invalid': $v.form.email.$error,
+                      'is-valid': !$v.form.email.$invalid
+                    }"
                     name="email"
                     value
                     required
@@ -110,6 +115,7 @@
                       <li v-if="!$v.form.email.minLength">Email must be minimum of 4 characters.</li>
                       <li v-if="!$v.form.email.email">Email must be a valid e-mail format.</li>
                       <li v-if="!$v.form.email.maxLength">Email cannot exceed 255 characters.</li>
+                      <li v-if="!$v.form.email.isUnique">This email is already registered.</li>
                     </ul>
                   </div>
                 </div>
@@ -289,7 +295,7 @@ export default {
               this.isUnique(value, "username", resolve, reject);
             });
           } else {
-            return false;
+            return true;
           }
         }
       },

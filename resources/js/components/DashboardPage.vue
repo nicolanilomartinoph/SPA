@@ -17,21 +17,27 @@ export default {
   components: {
     UsersTable
   },
+  created() {
+    //let token = response.data.data.token;
+    //console.log(token);
+
+    axios({
+      method: "get",
+      url: "/api/user",
+      data: {
+        test: "test"
+      },
+      headers: {
+        Authorization: "Bearer "
+      }
+    }).then(response => {
+      console.log(response.data);
+    });
+  },
   methods: {
     logout: function() {
       axios.post("api/logout").then(this.$router.push("/"));
     }
   }
-  // ,created() {
-  //   axios
-  //     .get("api/user", {
-  //       headers: {
-  //         Accept: "application/json",
-  //         Authorization: "Bearer ".$accessToken
-  //       }
-  //     })
-  //     .then(response => console.log(response.data))
-  //     .catch(error => console.log(error));
-  // }
 };
 </script>

@@ -81,14 +81,11 @@ class RegisterController extends Controller
      */
     public function isUnique(Request $data)
     {
-        $validatedData = $data->validate([
-            array_keys($data->query())[0] => 'unique:users'
-        ]);
-
-        if ($validatedData) {
-            return true;
-        } else {
+        $validation = Validator::make($data->all(), [array_keys($data->query())[0] => 'unique:users']);
+        if ($validation->fails()) {
             return false;
+        } else {
+            return true;
         }
     }
 }

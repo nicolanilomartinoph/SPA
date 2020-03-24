@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', 'AppController@index')->where('any', '(.*)')->middleware('guest');
+Route::get('/{any}', 'AppController@index')->where('any', '(.*)')->middleware('guest')->name('home');
