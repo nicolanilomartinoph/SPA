@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth::routes();
-
-Route::group(['middleware' => ['guest']], function () {
+Route::group(['middleware' => ['guest', 'web']], function () {
     Route::post('/login', 'Auth\LoginController@login');
     Route::post('/register', 'Auth\RegisterController@register');
 });
